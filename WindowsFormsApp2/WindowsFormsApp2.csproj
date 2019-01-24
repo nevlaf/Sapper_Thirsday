@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Game.cs" />
+    <Compile Include="Model\Model.cs" />
     <Compile Include="Views\Cell.cs">
       <SubType>Component</SubType>
     </Compile>
