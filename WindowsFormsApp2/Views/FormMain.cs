@@ -45,11 +45,26 @@ namespace WindowsFormsApp2
                         Top = size + j * size,
                         Width = size,
                         Height = size,
+                        
                     };
+                    
+                    cell.Click += new EventHandler(cell_Click);
                     Controls.Add(cell);
                 }
             }
         }
+        
+        #region Event
+
+        private void cell_Click(object sender, System.EventArgs e)
+        {
+             string massege = string.Format("i:{0}, i:{1}, i:({2})",
+                 (sender as Cell).i,
+                 (sender as Cell).j,
+                 (sender as Cell).Parent.Name);
+             MessageBox.Show(massege);
+        }
+        #endregion
 
     }
 }
