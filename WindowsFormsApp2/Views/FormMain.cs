@@ -47,18 +47,47 @@ namespace WindowsFormsApp2
                     Cell cell = new Cell(i, j)
                     {
                         Name = string.Format("{0}_{1}", i, j),
+                        //Text = "P",
                         Left = size + i * size,
                         Top = size + j * size,
                         Width = size,
                         Height = size,                        
                     };
                     
-                    cell.Click += new EventHandler(cell_Click);
+                    cell.MouseDown += new MouseEventHandler(cell_MouseDown);
                     Controls.Add(cell);
                 }
             }
         }
-        
+
+        private void UpdateField()
+        {
+            for (int j = 0; j < 15; j++)
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    switch (Game.mineField[i, j])
+                    {
+                        case CellState.Empty:
+                            break;
+                        case CellState.Flag:
+                            break;
+                        case CellState.Question:
+                            
+
+
+                            //Controls.Find(String.Format("{0}_{1}", i, j), false)[0].Text = "0";
+                            // (Controls.Find(String.Format("{0}_{1}", i, j), false)[0] as Cell).TextAlign = ContentAlignment.MiddleCenter;
+                            // ((Controls.Find(String.Format("{0}_{1}", i, j), false)[0] as Cell).Parent as Panel).Select();
+                            break;                        
+                        default:
+                            break;
+                    }
+                }
+            }
+
+        }
+
         #region Event
 
         /// <summary>
@@ -66,30 +95,30 @@ namespace WindowsFormsApp2
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cell_Click(object sender, System.EventArgs e)
-        {
-             //string massege = string.Format("i:{0}, j:{1}, i:({2})",
-             //    (sender as Cell).i,
-             //    (sender as Cell).j,
-             //    (sender as Cell).Parent.Name);
-             //MessageBox.Show(massege);
-            switch (Game.mineField[(sender as Cell).i, (sender as Cell).j])
+        private void cell_MouseDown(object sender, MouseEventArgs e)
+        {            
+            if (e.Button == MouseButtons.Right)
             {
-                case CellState.Empty:
-                    Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Flag;
-                    break;
-                case CellState.Flag:
-                    Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Question;
-                   // cell((sender as Cell).i, (sender as Cell).j).name = "P";
-                    break;
-                case CellState.Question:
-                    Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Empty;
-                    break;
-            }
-              MessageBox.Show(Game.mineField[(sender as Cell).i, (sender as Cell).j].ToString());
-
+                switch (Game.mineField[(sender as Cell).i, (sender as Cell).j])
+                {
+                    case CellState.Empty:
+                        Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Flag;
+                        (sender as Cell).Text = "P";
+                        break;
+                    case CellState.Flag:
+                        Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Question;
+                        (sender as Cell).Text = "?";
+                        break;
+                    case CellState.Question:
+                        Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Empty;
+                        (sender as Cell).Text = "";
+                        break;
+                    default:
+                        break;
+                }
+            }            
         }        
-        #endregion
 
+        #endregion
     }
 }

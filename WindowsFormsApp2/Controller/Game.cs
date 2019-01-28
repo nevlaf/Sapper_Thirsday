@@ -10,8 +10,8 @@ namespace WindowsFormsApp2.Controller
     public static class Game
     {
         #region Variables
-        private static int w = 12;
-        private static int h = 15;
+        private static int w = 15;
+        private static int h = 12;
 
         public static CellState[,] mineField = new CellState[h, w];
 
