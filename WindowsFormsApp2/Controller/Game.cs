@@ -47,7 +47,26 @@ namespace WindowsFormsApp2.Controller
                 else mineField[x, y] = CellState.Bomb;
                 //MessageBox.Show(i); x.ToString(),y.ToString()
             }         
-        }   
+        }
+        
+
+        public static int AmountSurraundBomb(int a, int b)
+            {
+            int sum = 0;
+            int x = a - 1;
+            int y = b - 1;
+            for(int i = 0; i < 3; i++)
+                {
+                for(int j = 0; j < 3; j++)
+                    {
+                    if(mineField[x + i, y + j] == CellState.Bomb) 
+                        {
+                        sum++;
+                        }
+                    }
+                }
+            return sum;
+            }
     }
  }
     

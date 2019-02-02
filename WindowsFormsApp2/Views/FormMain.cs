@@ -116,17 +116,34 @@ namespace WindowsFormsApp2
                         break;
                 }
             }
-            
+
+            if (e.Button == MouseButtons.Left)
+                {
+                if(Game.mineField[(sender as Cell).i, (sender as Cell).j] == CellState.Bomb)
+                    {
+                    (sender as Cell).Text = "Ж";
+                    MessageBox.Show("Game Over");
+                    }
+                else
+                    {
+                    (sender as Cell).Text = Game.AmountSurraundBomb((sender as Cell).i, (sender as Cell).j).ToString();
+                    }
+                }
+
+
+            /*
             if (e.Button == MouseButtons.Left)
                 switch (Game.mineField[(sender as Cell).i, (sender as Cell).j])
                 {
                     case CellState.Bomb:
-                        Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Bomb;
+                        //Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Bomb;
                         (sender as Cell).Text = "Ж";
+                        MessageBox.Show("Game Over");
                         break;                    
                     default:
                         break;
                 }
+              */
         }        
 
         #endregion
