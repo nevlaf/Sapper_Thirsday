@@ -4,30 +4,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApp2.Model;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp2.Controller
 {
     public static class Game
     {
-        #region Variables
-        private static int w = 15;
-        private static int h = 12;
 
-        public static CellState[,] mineField = new CellState[h, w];
+        private static int width = 15;
+        private static int height = 12;
+        static int countBomb = (width*height);
 
-        #endregion
-        #region
-        public static void Init()
+        public static CellState[,] mineField = new CellState[height, width];
+
+
+ 
+        public static void InitField()
         {
-            for (int i = 0; i < h; i++)
+            for (int i = 0; i < height; i++)
             {
-                for (int j = 0; j < w; j++)
+                for (int j = 0; j < width; j++)
                 {
                     mineField[i, j] = CellState.Empty;
                 }
             }
         }
 
-        #endregion
+
+
+
+        public static void InitBombs()
+        {
+            Random number = new Random();
+            for(int i = 0; i < countBomb; i++)
+            {
+                int y = number.Next(width);
+                int x = number.Next(height);
+                if (mineField[x, y] == CellState.Bomb)
+                    {
+                    i++;
+                    }
+                else mineField[x, y] = CellState.Bomb;
+                //MessageBox.Show(i); x.ToString(),y.ToString()
+            }         
+        }   
     }
-}
+ }
+    

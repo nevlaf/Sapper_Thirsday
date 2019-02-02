@@ -29,10 +29,9 @@ namespace WindowsFormsApp2
         {
             InitializeComponent();
             PrepairField();
-            Game.Init();
-
-
-
+            Game.InitField();            
+            Game.InitBombs();            
+            
         }
         /// <summary>
         /// Добавление на рабочее поле ячеек
@@ -116,7 +115,18 @@ namespace WindowsFormsApp2
                     default:
                         break;
                 }
-            }            
+            }
+            
+            if (e.Button == MouseButtons.Left)
+                switch (Game.mineField[(sender as Cell).i, (sender as Cell).j])
+                {
+                    case CellState.Bomb:
+                        Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Bomb;
+                        (sender as Cell).Text = "Ж";
+                        break;                    
+                    default:
+                        break;
+                }
         }        
 
         #endregion

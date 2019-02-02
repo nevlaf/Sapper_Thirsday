@@ -8,6 +8,7 @@ namespace WindowsFormsApp2.Model
 {
     public enum CellState
     {
+        Bomb,
         Empty,
         Flag,
         Question
