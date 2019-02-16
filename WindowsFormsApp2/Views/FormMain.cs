@@ -130,20 +130,6 @@ namespace WindowsFormsApp2
                     }
                 }
 
-
-            /*
-            if (e.Button == MouseButtons.Left)
-                switch (Game.mineField[(sender as Cell).i, (sender as Cell).j])
-                {
-                    case CellState.Bomb:
-                        //Game.mineField[(sender as Cell).i, (sender as Cell).j] = CellState.Bomb;
-                        (sender as Cell).Text = "Ж";
-                        MessageBox.Show("Game Over");
-                        break;                    
-                    default:
-                        break;
-                }
-              */
         }        
 
         #endregion
